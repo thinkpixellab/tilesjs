@@ -1,0 +1,3 @@
+# Exclude compiled versions
+tiles.js
+tiles.min.js
