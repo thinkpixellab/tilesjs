@@ -13,7 +13,7 @@ The Tiles.js library provides a grid control and a simple template language for 
 ###Download###
 [https://github.com/thinkpixellab/tilesjs/downloads](https://github.com/thinkpixellab/tilesjs/downloads)
 
-Compiled size: 5.6 KB (2.1 KB gzipped).
+Compiled size: 6 KB (just over 2 KB gzipped).
 
 ###Sample Code###
 Coming Soon...
