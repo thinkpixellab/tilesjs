@@ -1,10 +1,63 @@
-Tiles
+Tiles.js
 =====
 
-A simple JavaScript library for creating tile-based edge-to-edge layouts.
+###Goal###
+Make it easy to create grid based layouts which can adapt to various screen sizes and changing content.
+
+###How###
+The Tiles.js library provides a grid control and a simple template language for defining layouts. It uses jQuery to animate tiles when either the content or resolution changes.
+
+###Demo###
+[http://www.pulse.me/reader/dev](http://www.pulse.me/reader/dev)
+
+###Download###
+[https://github.com/thinkpixellab/tilesjs/downloads](https://github.com/thinkpixellab/tilesjs/downloads)
+
+Compiled size: 5.6 KB (2.1 KB gzipped).
+
+###Sample Code###
+Coming Soon...
+
+###Tile###
+A tile is a rectangular element that covers one or more cells in a grid. Each tile has a unique identifier and maintains its current position in the grid (top, left, width, height).
+
+The tile handles several events during its lifecycle:
+
+* appendTo: tile should be appended to the parent grid element. 
+* remove: tile should be removed from the parent grid
+* resize: tile is resized (or moved) within the parent grid
+
+###Template###
+A template specifies the layout of variably sized tiles in a grid. We provide a simple JSON based template language for defining templates. A single cell tile should use the period character. Larger tiles may be created using any character that is unused by a adjacent tile. Whitespace is ignored when parsing the rows.
+
+Examples:
+
+    var simpleTemplate = [
+        '    A  A  .  B    ',
+        '    A  A  .  B    ',
+        '    .  C  C  .    ',
+    ];
+
+    var complexTemplate = [
+        '    J  J  .  .  E  E    ',
+        '    .  A  A  .  E  E    ',
+        '    B  A  A  F  F  .    ',
+        '    B  .  D  D  .  H    ',
+        '    C  C  D  D  G  H    ',
+        '    C  C  .  .  G  .    ',
+    ];
+
+In addition to creating templates using JSON, you can also programmatically build templates. The library includes a simple UniformTemplate factory which creates 1x1 templates for a given number of columns and tiles. Custom template factories can be created to generate content aware layouts.
+
+###Grid###
+The grid control renders a set of tiles into a template. The grid was designed to fill available screen area by either scaling the size of a cell or by requesting a new template with a different number of columns. 
+
+It was also designed for a changing set of content. When tiles or template change, the grid will instruct the tiles to either fade in, animate, or fade out to their new location.
+
+Updates and Redraw are separate processes, so a series of updates may be made to the content followed by a single redraw to trigger the animation when appropriate. During the redraw phase, the grid has a prioritization extensibility point. Custom grid controls can be created to order the content prior to assigning each tile a spot in the grid.
 
 
-# The MIT License #
+## The MIT License ##
 
 Copyright (c) 2012 Pixel Lab
 
