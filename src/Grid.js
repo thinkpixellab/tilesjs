@@ -58,13 +58,13 @@
     Grid.prototype.resize = function() {
         
         var newCols = this.resizeColumns();
-        if (this.numCols !== newCols) {
+        if (this.numCols !== newCols && newCols > 0) {
             this.numCols = newCols;
             this.isDirty = true;
         }
 
         var newCellSize = this.resizeCellSize();        
-        if (this.cellSize !== newCellSize) {
+        if (this.cellSize !== newCellSize && newCellSize > 0) {
             this.cellSize = newCellSize;
             this.isDirty = true;    
         }
@@ -259,7 +259,7 @@
     Grid.prototype.shouldRedraw = function() {
 
         // see if we need to calculate the cell size
-        if (!this.cellSize) {
+        if (this.cellSize <= 0) {
             this.resize();
         }
 
