@@ -73,13 +73,34 @@ var Tiles = {};
             changed = true;
         }
 
+        // Sometimes animation fails to set the css top and left correctly
+        // in webkit. We'll validate upon completion of the animation and
+        // set the properties again if they don't match the expected values.
+        var tile = this,
+            validateChangesAndComplete = function() {
+                var el = tile.$el[0];
+                if (tile.left != el.offsetLeft) {
+                    //console.log ('mismatch left:' + tile.left + ' actual:' + el.offsetLeft + ' id:' + tile.id);
+                    tile.$el.css('left', tile.left);
+                }
+                if (tile.top != el.offsetTop) {
+                    //console.log ('mismatch top:' + tile.top + ' actual:' + el.offsetTop + ' id:' + tile.id);
+                    tile.$el.css('top', tile.top);
+                }
+
+                if (onComplete) {
+                    onComplete();
+                }
+            };
+
+
         // make css changes with animation when requested
         if (animate && changed) {
 
             this.$el.animate(cssChanges, {
                 duration: duration,
                 easing: 'swing',
-                complete: onComplete
+                complete: validateChangesAndComplete
             });
         }
         else {
@@ -88,10 +109,7 @@ var Tiles = {};
                 this.$el.css(cssChanges);
             }
 
-            // allow tile content to be manipulated after resize
-            if (onComplete) {
-                onComplete();
-            }
+            setTimeout(validateChangesAndComplete, duration);
         }
     };
 
