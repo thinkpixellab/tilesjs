@@ -8,7 +8,8 @@ Make it easy to create grid based layouts which can adapt to various screen size
 The Tiles.js library provides a grid control and a simple template language for defining layouts. It uses jQuery to animate tiles when either the content or resolution changes.
 
 ###Demo###
-[http://www.pulse.me/reader/dev](http://www.pulse.me/reader/dev)
+See the tiles in action on Pulse for the Web!
+[http://www.pulse.me/app/dev](http://www.pulse.me/app/dev)
 
 ###Download###
 [https://github.com/thinkpixellab/tilesjs/downloads](https://github.com/thinkpixellab/tilesjs/downloads)
