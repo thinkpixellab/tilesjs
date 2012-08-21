@@ -18,7 +18,7 @@ Once you sign-in to Pulse, check out the [Behind the Scenes](http://www.pulse.me
 Compiled size: 6 KB (just over 2 KB gzipped).
 
 ###Sample Code###
-Coming Soon...
+There are 2 samples in the demos directory. A proper site with documentation and additional samples is coming soon...
 
 ###Tile###
 A tile is a rectangular element that covers one or more cells in a grid. Each tile has a unique identifier and maintains its current position in the grid (top, left, width, height).
