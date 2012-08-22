@@ -74,16 +74,55 @@
         For this example, we'll bypass the factory by setting the template directly. We've predefined 5 templates using JSON. Select any of the templates below to update the layout of the grid.
     </p>
 
-    <div id="dev-tiles-templates">
+    <div id="sample2-templates" class="dev-tiles-templates">
         <ul>
-            <li id="dev-l1" class="selected dev-template"></li>
-            <li id="dev-l2" class="dev-template"></li>
-            <li id="dev-l3" class="dev-template"></li>
-            <li id="dev-l4" class="dev-template"></li>
-            <li id="dev-l5" class="dev-template"></li>
+            <li id="sample2-t1" class="dev-l1 selected dev-template"></li>
+            <li class="dev-l2 dev-template"></li>
+            <li class="dev-l3 dev-template"></li>
+            <li class="dev-l4 dev-template"></li>
+            <li class="dev-l5 dev-template"></li>
         </ul>
     </div>
     <div id="sample2-grid" class="grid"></div>
+
+    <h2>Sample 3: Updating Tiles During Resize</h2>
+    <p>
+        In the previous sample we customized our grid by overriding tile creation and adding the tile number to the div. In this example, we'll create a custom Tile that can update content when the tile size changes. 
+    </p>
+    <p> 
+        The size of a tile may change for several reasons:
+        <ul>
+            <li>The grid is resized</li>
+            <li>The template was changed</li>
+            <li>Tiles were added or removed</li>
+            <li>The width of a grid cell changed</li>
+        </ul>
+    </p>
+    <p>
+        The grid determines the location and size of each tile based on the template and current
+        set of tiles. However, it delegates the element changes by calling Tile.resize(). There are 5 parameters:
+        <ul>
+            <li><b>cellRect</b> - A rectangle which specifies the location of the tile in the cellular grid. So if the first tile is a 1x1 then the cellRect would be { x: 0, y: 0, width: 1, height: 1 }.</li>
+            <li><b>pixelRect</b> -  A rectangle which specifies the location of the tile relative to the top left pixel coordinates of the grid. So if the first tile is 1x1 and the cell size is 200px then the pixelRect would be { x: 0, y: 0, width: 200, height: 200 }.</li>
+            <li><b>animate</b> - Indicates whether the transition to the new location should be animated.</li>
+            <li><b>duration</b> - Duration of the animation</li>
+            <li><b>onComplete</b> - Callback fired once the tile has completed the move to the new location</li>
+        </ul>
+    </p>
+    <p>
+        In this example, we'll override the resize method and render the cell size for each tile. Try switching between the following fixed templates and observe that the dimensions are updated when tiles are resized.
+    </p>
+
+    <div id="sample3-templates" class="dev-tiles-templates">
+        <ul>
+            <li id="sample3-t1" class="dev-l1 selected dev-template"></li>
+            <li class="dev-l2 dev-template"></li>
+            <li class="dev-l3 dev-template"></li>
+            <li class="dev-l4 dev-template"></li>
+            <li class="dev-l5 dev-template"></li>
+        </ul>
+    </div>
+    <div id="sample3-grid" class="grid"></div>
 
 </body>
 </html>

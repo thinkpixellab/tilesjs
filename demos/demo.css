@@ -35,16 +35,16 @@ body {
 
 /* template selections for sample #2 */
 
-.dev-tile-number {
+.dev-tile-number, .dev-tile-size {
     font-size: 36px;
     padding: 10px;
 }
 
-#dev-tiles-templates ul {
+.dev-tiles-templates ul {
     margin-bottom: 10px;
 }
 
-#dev-tiles-templates li {
+.dev-template {
     margin-right: 20px;
     height: 35px;
     display: inline-block;
@@ -52,30 +52,30 @@ body {
     cursor: pointer;
 }
 
-#dev-tiles-templates li.selected {
+.dev-template.selected {
     background-position-y: -200px;
 }
 
-#dev-tiles-templates #dev-l1 {
+.dev-l1 {
     width: 47px;
 }
 
-#dev-tiles-templates #dev-l2 {
+.dev-l2 {
     width: 47px;
     background-position-x: -68px;
 }
 
-#dev-tiles-templates #dev-l3 {
+.dev-l3 {
     width: 39px;
     background-position-x: -135px;
 }
 
-#dev-tiles-templates #dev-l4 {
+.dev-l4 {
     width: 39px;
     background-position-x: -194px;
 }
 
-#dev-tiles-templates #dev-l5 {
+.dev-l5 {
     width: 47px;
     background-position-x: -245px;
     margin-right: 0px;
