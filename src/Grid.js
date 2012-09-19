@@ -39,9 +39,14 @@
         this.tilesRemoved = [];
     };
 
+    Grid.prototype.getContentWidth = function() {
+        // by default, the entire container width is used when drawing tiles
+        return this.$el.width();
+    };
+
     // gets the number of columns during a resize
     Grid.prototype.resizeColumns = function() {
-        var panelWidth = this.$el.width();
+        var panelWidth = this.getContentWidth();
         
         // ensure we have at least one column
         return Math.max(1, Math.floor((panelWidth + this.cellPadding) /
@@ -50,7 +55,7 @@
 
     // gets the cell size during a grid resize
     Grid.prototype.resizeCellSize = function() {
-        var panelWidth = this.$el.width();
+        var panelWidth = this.getContentWidth();
         return Math.ceil((panelWidth + this.cellPadding) / this.numCols) -
             this.cellPadding;
     };
