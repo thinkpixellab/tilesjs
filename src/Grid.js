@@ -1,4 +1,4 @@
-(function() {
+(function($) {
 
     var Grid = Tiles.Grid = function(element) {
 
@@ -171,10 +171,8 @@
             prevTileIds.push(this.tiles[i].id);
         }
 
-        var tileIds = prepend 
-            ? newTileIds.concat(prevTileIds) 
+        var tileIds = prepend ? newTileIds.concat(prevTileIds) 
             : prevTileIds.concat(newTileIds);
-
         this.updateTiles(tileIds);
     };
 
@@ -373,4 +371,4 @@
         }
     };
 
-})();
+})(jQuery);

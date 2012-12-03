@@ -15,6 +15,4 @@ Tiles.UniformTemplates = {
 
         return new Tiles.Template(rects, numCols, numRows);
     }
-         
-
 };

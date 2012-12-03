@@ -23,7 +23,7 @@
     ];
 */
 
-(function() {
+(function($) {
 
     // remove whitespace and create 2d array
     var parseCells = function(rows) {
@@ -113,7 +113,7 @@
                 }
 
                 // add the rect
-                rects.push(new Rectangle(x, y, width, height))
+                rects.push(new Rectangle(x, y, width, height));
             }
         }
 
@@ -214,4 +214,4 @@
     // period used to designate a single 1x1 cell tile
     Tiles.Template.SINGLE_CELL = '.';
 
-})();
+})(jQuery);

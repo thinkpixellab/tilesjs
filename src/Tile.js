@@ -2,7 +2,7 @@
 // single namespace export
 var Tiles = {};
 
-(function() {
+(function($) {
 
     var Tile = Tiles.Tile = function(tileId, element) {
 
@@ -79,11 +79,11 @@ var Tiles = {};
         var tile = this,
             validateChangesAndComplete = function() {
                 var el = tile.$el[0];
-                if (tile.left != el.offsetLeft) {
+                if (tile.left !== el.offsetLeft) {
                     //console.log ('mismatch left:' + tile.left + ' actual:' + el.offsetLeft + ' id:' + tile.id);
                     tile.$el.css('left', tile.left);
                 }
-                if (tile.top != el.offsetTop) {
+                if (tile.top !== el.offsetTop) {
                     //console.log ('mismatch top:' + tile.top + ' actual:' + el.offsetTop + ' id:' + tile.id);
                     tile.$el.css('top', tile.top);
                 }
@@ -113,4 +113,4 @@ var Tiles = {};
         }
     };
 
-})();
+})(jQuery);
