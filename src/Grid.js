@@ -88,7 +88,7 @@
         // retain existing tiles and queue remaining tiles for removal
         for (i = this.tiles.length - 1; i >= 0; i--) {
             tile = this.tiles[i];
-            index = newTileIds.indexOf(tile.id);
+            index = $.inArray(tile.id, newTileIds);
             if (index < 0) {
                 this.tilesRemoved.push(tile);
                 //console.log('Removing tile: ' + tile.id)
@@ -142,7 +142,7 @@
 
         for (i = 0; i < numItems; i++) {
             item = items[i];
-            if (results.indexOf(item) === -1) {
+            if ($.inArray(item, results) === -1) {
                 results.push(item);
             }
         }
@@ -190,7 +190,7 @@
         // get the set of ids which have not been removed
         for (i = 0, len = this.tiles.length; i < len; i++) {
             id = this.tiles[i].id;
-            if (removeTileIds.indexOf(id) === -1) {
+            if ($.inArray(id, removeTileIds) === -1) {
                 updateTileIds.push(id);
             }
         }
@@ -324,7 +324,7 @@
             // place all the tiles for the current page
             for (i = 0, len = priorityTiles.length; i < len; i++) {
                 tile = priorityTiles[i];
-                added = this.tilesAdded.indexOf(tile) >= 0;
+                added = $.inArray(tile, this.tilesAdded) >= 0;
 
                 cellRect = priorityRects[i];
                 pixelRect = new Tiles.Rectangle(                        
