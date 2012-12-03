@@ -1,0 +1,14 @@
+{
+  "name": "tiles",
+  "title": "Tiles.js",
+  "homepage": "http://thinkpixellab.com/tilesjs",
+  "author": {
+    "name": "Pixel Lab",
+    "url": "http://thinkpixellab.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.3.8"
+  },
+  "keywords": []
+}
