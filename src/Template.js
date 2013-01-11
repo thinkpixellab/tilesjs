@@ -70,7 +70,7 @@
             numRows = cells.length,
             numCols = numRows === 0 ? 0 : cells[0].length,
             cell, height, width, x, y, rectX, rectY;
-
+        
         // make a copy of the cells that we can modify
         cells = cells.slice();
         for (y = 0; y < numRows; y++) {
@@ -112,8 +112,10 @@
                     }
                 }
 
-                // add the rect
-                rects.push(new Rectangle(x, y, width, height));
+                // add the rect if not empty space padding
+                if (cell !== Tiles.Template.CELL_PADDING) {
+                    rects.push(new Rectangle(x, y, width, height));
+                }
             }
         }
 
@@ -177,21 +179,20 @@
             rows = [],
             i, len, rect, x, y, label;
 
-        // fill in single tiles for each cell
+        // fill entire grid with cell paddings
         for (y = 0; y < this.numRows; y++) {
             rows[y] = [];
             for (x = 0; x < this.numCols; x++) {
-                rows[y][x] = Tiles.Template.SINGLE_CELL;
+                rows[y][x] = Tiles.Template.CELL_PADDING;
             }
         }
 
         // now fill in bigger tiles
         for (i = 0, len = this.rects.length; i < len; i++) {
             rect = this.rects[i];
-            if (rect.width > 1 || rect.height > 1) {
 
                 // mark the tile position with a label
-                label = LABELS[labelIndex];
+                label = (rect.width === 1 && rect.height === 1) ? Tiles.Template.SINGLE_CELL : LABELS[labelIndex];
                 for(y = 0; y < rect.height; y++) {
                     for(x = 0; x < rect.width; x++) {
                         rows[rect.y + y][rect.x + x] = label;
@@ -200,7 +201,6 @@
 
                 // advance the label index
                 labelIndex = (labelIndex + 1) % NUM_LABELS;
-            }
         }
 
         // turn the rows into strings
@@ -213,5 +213,6 @@
     
     // period used to designate a single 1x1 cell tile
     Tiles.Template.SINGLE_CELL = '.';
+    Tiles.Template.CELL_PADDING = '~';
 
 })(jQuery);
