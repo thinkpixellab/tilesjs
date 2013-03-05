@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         'src/Tile.js',
         'src/Template.js',
         'src/UniformTemplates.js',
+        'src/SmartArrangeTemplates.js',
         'src/Grid.js'
       ]
     },
