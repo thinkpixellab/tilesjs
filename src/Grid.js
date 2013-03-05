@@ -201,7 +201,7 @@
         // ensure that we have at least one column
         numCols = Math.max(1, numCols);
 
-        var template = this.templateFactory.get(numCols, targetTiles);
+        var template = this.templateFactory.get(numCols, targetTiles, this.tiles);
         if (!template) {
             
             // fallback in case the default factory can't generate a good template
