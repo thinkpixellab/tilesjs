@@ -157,6 +157,7 @@
         }
 
         this.numRows += other.numRows;
+        this.numTiles += other.numTiles;
     };
 
     Tiles.Template.fromJSON = function(rows) {
