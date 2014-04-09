@@ -366,6 +366,9 @@
         this.tilesAdded = [];
         this.isDirty = false;
 
+        var height = this.cellSize * this.template.numRows;
+        this.$el.height(height);   
+
         if (onComplete) {
             setTimeout(function() { onComplete(true); }, duration + 10);
         }
