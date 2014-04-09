@@ -16,6 +16,7 @@ var Tiles = {};
 
         // cache the tile container element
         this.$el = $(element || document.createElement('div'));
+        this.$el.className = "block";
     };
 
     Tile.prototype.appendTo = function($parent, fadeIn, delay, duration) {
