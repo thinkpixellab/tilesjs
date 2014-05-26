@@ -7,9 +7,6 @@
         // animation lasts 500 ms by default
         this.animationDuration = 500;
 
-        // min width and height of a cell in the grid
-        this.cellSizeMin = 150;
-
         // the default set of factories used when creating templates
         this.templateFactory = Tiles.UniformTemplates;
         
@@ -19,8 +16,15 @@
         // spacing between tiles
         this.cellPadding = 10;
 
+        // min width and height of a cell in the grid
+        this.cellWidthMin = 150;
+        this.cellHeightMin = 150;
+
         // actual width and height of a cell in the grid
-        this.cellSize = 0;
+        this.cellWidth = 0;
+        this.cellHeight = 0;
+
+        this.cellAspectRatio = 1;
 
         // number of tile cell columns
         this.numCols = 1;
@@ -50,11 +54,11 @@
         
         // ensure we have at least one column
         return Math.max(1, Math.floor((panelWidth + this.cellPadding) /
-            (this.cellSizeMin + this.cellPadding)));
+            (this.cellWidthMin + this.cellPadding)));
     };
 
     // gets the cell size during a grid resize
-    Grid.prototype.resizeCellSize = function() {
+    Grid.prototype.resizeCellWidth = function() {
         var panelWidth = this.getContentWidth();
         return Math.ceil((panelWidth + this.cellPadding) / this.numCols) -
             this.cellPadding;
@@ -68,9 +72,10 @@
             this.isDirty = true;
         }
 
-        var newCellSize = this.resizeCellSize();        
-        if (this.cellSize !== newCellSize && newCellSize > 0) {
-            this.cellSize = newCellSize;
+        var newCellWidth = this.resizeCellWidth();        
+        if (this.cellWidth !== newCellWidth && newCellWidth > 0) {
+            this.cellWidth = newCellWidth;
+            this.cellHeight = this.cellWidth / this.cellAspectRatio;
             this.isDirty = true;    
         }
     };
@@ -262,7 +267,7 @@
     Grid.prototype.shouldRedraw = function() {
 
         // see if we need to calculate the cell size
-        if (this.cellSize <= 0) {
+        if (this.cellWidth <= 0) {
             this.resize();
         }
 
@@ -291,7 +296,8 @@
         var numTiles = this.tiles.length,
             pageSize = this.priorityPageSize,
             duration = this.animationDuration,
-            cellPlusPadding = this.cellSize + this.cellPadding,
+            widthPlusPadding = this.cellWidth + this.cellPadding,
+            heightPlusPadding = this.cellHeight + this.cellPadding,
             tileIndex = 0,
             appendDelay = 0,
             viewRect = new Tiles.Rectangle(
@@ -326,10 +332,10 @@
 
                 cellRect = priorityRects[i];
                 pixelRect = new Tiles.Rectangle(                        
-                    cellRect.x * cellPlusPadding,
-                    cellRect.y * cellPlusPadding,
-                    (cellRect.width * cellPlusPadding) - this.cellPadding,
-                    (cellRect.height * cellPlusPadding) - this.cellPadding);
+                    cellRect.x * widthPlusPadding,
+                    cellRect.y * heightPlusPadding,
+                    (cellRect.width * widthPlusPadding) - this.cellPadding,
+                    (cellRect.height * heightPlusPadding) - this.cellPadding);
 
                 tile.resize(
                     cellRect,
