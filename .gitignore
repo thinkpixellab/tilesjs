@@ -4,3 +4,6 @@ tiles.min.js
 
 # Ignore node modules
 node_modules
+
+# Webstorm
+.idea
