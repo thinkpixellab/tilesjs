@@ -300,6 +300,7 @@
             heightPlusPadding = this.cellHeight + this.cellPadding,
             tileIndex = 0,
             appendDelay = 0,
+            maxAppendDelay = 0,
             viewRect = new Tiles.Rectangle(
                 this.$el.scrollLeft(),
                 this.$el.scrollTop(),
@@ -351,6 +352,7 @@
                         appendDelay = this.getAppendDelay(
                             cellRect, pageRects, priorityRects, 
                             tile, pageTiles, priorityTiles);
+                        maxAppendDelay = Math.max(maxAppendDelay, appendDelay) || 0;
                     } else {
                         appendDelay = 0;
                     }
@@ -373,7 +375,10 @@
         this.isDirty = false;
 
         if (onComplete) {
-            setTimeout(function() { onComplete(true); }, duration + 10);
+            setTimeout(
+                function() { onComplete(true); }, 
+                Math.max(maxAppendDelay, duration) + 10
+            );
         }
     };
 
