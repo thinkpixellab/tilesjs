@@ -12,8 +12,12 @@ See the tiles in action on [Pulse for the Web](http://www.pulse.me/)!
 
 Once you sign-in to Pulse, check out the [Behind the Scenes](http://www.pulse.me/app/dev) page which includes more info about the tiles and a live editor to experiment with templates.
 
-###Download###
-[https://github.com/thinkpixellab/tilesjs/downloads](https://github.com/thinkpixellab/tilesjs/downloads)
+###Install###
+
+    npm install tilesjs
+
+
+Or you can download binaries from the dist folder
 
 Compiled size: 6 KB (just over 2 KB gzipped).
 
