@@ -282,6 +282,20 @@
         return shouldRedraw;
     };
 
+    // converts cell rectangles to pixel rectangles. allows users
+    // to override exact placement of the tiles.
+    Grid.prototype.getPixelRectangle = function(cellRect) {
+
+        var widthPlusPadding = this.cellWidth + this.cellPadding,
+            heightPlusPadding = this.cellHeight + this.cellPadding;
+
+        return new Tiles.Rectangle(                        
+            cellRect.x * widthPlusPadding,
+            cellRect.y * heightPlusPadding,
+            (cellRect.width * widthPlusPadding) - this.cellPadding,
+            (cellRect.height * heightPlusPadding) - this.cellPadding);
+    };
+
     // redraws the grid after tile collection changes
     Grid.prototype.redraw = function(animate, onComplete) {
 
@@ -296,8 +310,6 @@
         var numTiles = this.tiles.length,
             pageSize = this.priorityPageSize,
             duration = this.animationDuration,
-            widthPlusPadding = this.cellWidth + this.cellPadding,
-            heightPlusPadding = this.cellHeight + this.cellPadding,
             tileIndex = 0,
             appendDelay = 0,
             maxAppendDelay = 0,
@@ -332,11 +344,7 @@
                 added = $.inArray(tile, this.tilesAdded) >= 0;
 
                 cellRect = priorityRects[i];
-                pixelRect = new Tiles.Rectangle(                        
-                    cellRect.x * widthPlusPadding,
-                    cellRect.y * heightPlusPadding,
-                    (cellRect.width * widthPlusPadding) - this.cellPadding,
-                    (cellRect.height * heightPlusPadding) - this.cellPadding);
+                pixelRect = this.getPixelRectangle(cellRect);
 
                 tile.resize(
                     cellRect,
